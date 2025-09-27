@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Armazenamento de Chromebooks</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Sistema de Login -->
+    <div id="login-system" class="login-system">
+        <div class="login-container">
+            <div class="login-header">
+                <h1>🔒 Sistema de Chromebooks</h1>
+                <p>Acesso Restrito ao Colégio</p>
+            </div>
+            
+            <form id="login-form" class="login-form">
+                <div class="form-group">
+                    <label for="username">Usuário:</label>
+                    <input type="text" id="username" name="username" required placeholder="Digite seu usuário">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Senha:</label>
+                    <input type="password" id="password" name="password" required placeholder="Digite sua senha">
+                </div>
+                
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox" id="remember-me">
+                        <span>Lembrar-me</span>
+                    </label>
+                </div>
+                
+                <button type="submit" class="login-btn">
+                    <span>→</span>
+                    Entrar no Sistema
+                </button>
+                
+                <div class="login-footer">
+                    <p>Entre em contato com o administrador em caso de problemas</p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Sistema Principal (inicialmente escondido) -->
+    <div id="main-system" class="main-system" style="display: none;">
+        <div class="container">
+            <!-- Header com logout -->
+            <header>
+                <div class="header-content">
+                    <div>
+                        <h1>Sistema de Armazenamento de Chromebooks</h1>
+                        <p>Gerencie os Chromebooks Samsung 4 dos alunos</p>
+                    </div>
+                    <button id="logout-btn" class="logout-btn">
+                        <span>⎋</span>
+                        Sair
+                    </button>
+                </div>
+            </header>
+            
+    <div class="container">
+        <header>
+            <h1>Sistema de Armazenamento de Chromebooks</h1>
+            <p>Gerencie os Chromebooks Samsung 4 dos alunos</p>
+        </header>
+
+        <!-- Sistema de Busca Avançada -->
+        <div class="search-section">
+            <div class="search-header">
+                <h2>Busca Avançada</h2>
+                <button class="search-toggle" id="search-toggle">
+                    <span>⌄</span>
+                </button>
+            </div>
+            
+            <div class="search-panel" id="search-panel">
+                <div class="search-input-group">
+                    <div class="search-field">
+                        <input type="text" id="search-input" placeholder="Digite o nome do aluno, ID do Chromebook ou número do slot...">
+                        <button class="search-btn" id="search-btn">
+                            <span>↗</span>
+                            Buscar
+                        </button>
+                    </div>
+                    
+                    <div class="search-filters">
+                        <div class="filter-group">
+                            <label>
+                                <input type="checkbox" id="filter-occupied" checked>
+                                <span class="filter-badge occupied"></span>
+                                Ocupados
+                            </label>
+                            <label>
+                                <input type="checkbox" id="filter-available" checked>
+                                <span class="filter-badge available"></span>
+                                Disponíveis
+                            </label>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <select id="filter-cabinet">
+                                <option value="all">Todos os Gabinetes</option>
+                                <option value="1">Gabinete 1</option>
+                                <option value="2">Gabinete 2</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="search-results">
+                    <div class="results-header">
+                        <span id="results-count">0 resultados encontrados</span>
+                        <button class="clear-results" id="clear-results">Limpar</button>
+                    </div>
+                    <div class="results-list" id="results-list"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Estatísticas -->
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-value" id="total-chromebooks">0</div>
+                <div class="stat-label">Total de Chromebooks</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="available-slots">144</div>
+                <div class="stat-label">Espaços Disponíveis</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="occupancy-rate">0%</div>
+                <div class="stat-label">Taxa de Ocupação</div>
+            </div>
+        </div>
+
+        <!-- Seleção de Gabinetes -->
+        <div id="cabinet-selection" class="cabinet-selection">
+            <div class="cabinet-card" data-cabinet="1">
+                <div class="cabinet-image">
+                    <img src="images/gabinete.png" alt="Gabinete 1 - Movplan" class="cabinet-photo">
+                    <div class="cabinet-overlay"></div>
+                </div>
+                <h2>Gabinete 1</h2>
+            </div>
+
+            <div class="cabinet-card" data-cabinet="2">
+                <div class="cabinet-image">
+                    <img src="images/gabinete.png" alt="Gabinete 2 - Movplan" class="cabinet-photo">
+                    <div class="cabinet-overlay"></div>
+                </div>
+                <h2>Gabinete 2</h2>
+            </div>
+        </div>
+
+        <!-- Detalhes do Gabinete -->
+        <div id="cabinet-details" class="cabinet-details">
+            <button class="back-button" id="back-button">← Voltar para a seleção de gabinetes</button>
+            <div id="cabinet-view-container"></div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="chromebook-modal">
+        <div class="modal-content glass">
+            <div class="modal-header">
+                <h2 id="modal-title">Adicionar Chromebook</h2>
+                <span class="close" id="close-modal">×</span>
+            </div>
+            <form id="chromebook-form">
+                <input type="hidden" id="cabinet-id">
+                <input type="hidden" id="slot-number">
+                
+                <div class="form-group">
+                    <label for="student-name">Nome do Aluno:</label>
+                    <input type="text" id="student-name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="chromebook-id">ID do Chromebook (opcional):</label>
+                    <input type="text" id="chromebook-id">
+                </div>
+                
+                <div class="action-buttons">
+                    <button type="button" id="remove-chromebook" class="btn-danger">Remover</button>
+                    <button type="submit" class="btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
